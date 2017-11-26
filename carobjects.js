@@ -14,13 +14,13 @@ var carRental = {
 			},
 			
 			{	cartype: 'Midsize',
-				inventory: 5,
+				available: 5,
 				booked: 1,
 				price: "$40"
 			},
 				
 			{	cartype: 'Luxury',
-				inventory: 7,
+				available: 7,
 				booked: 4,
 				price: "$70"
 			}
@@ -32,22 +32,18 @@ var carRental = {
 function displayDetails(car) {
     console.log(car);
     document.getElementById("price").innerHTML = carRental.cars[car].price;
-    document.getElementById("inventory").innerHTML = carRental.cars[car].inventory;
+    document.getElementById("available").innerHTML = carRental.cars[car].available;
 }
 
-	console.log("start")
+	
 	for (var i = 0; i < carRental.cars.length; i++) {
 		var selectBtn = document.createElement("OPTION");
 		selectBtn.setAttribute('type', 'option');
 		selectBtn.setAttribute('value', i);
 	    selectBtn.innerHTML = carRental.cars[i].cartype;
-    
-	// selectBtn.setAttribute('id', 'car' +i);
-	document.getElementById("selectMenu").appendChild(selectBtn);
-   
-    // carInfo = cars.cartype.options[i].value
-    console.log("stop");
-	};
+	    selectBtn.setAttribute("onchange", "displayDetails(" + i + ")");  
+		document.getElementById("selectMenu").appendChild(selectBtn);
+	}
 
 
 
